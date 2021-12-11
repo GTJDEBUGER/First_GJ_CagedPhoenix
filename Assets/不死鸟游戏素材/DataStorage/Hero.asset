@@ -15,4 +15,4 @@ MonoBehaviour:
   maxHealth: 0
   currentHealth: 0
   attack: 0
-  position: {x: 14.5590725, y: 4.8365483}
+  position: {x: 2.09, y: -1.63}
