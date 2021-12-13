@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Charactors_Data : MonoBehaviour
 {
+   
     public Charactors Charactor;
     public int maxHealth
     { 
