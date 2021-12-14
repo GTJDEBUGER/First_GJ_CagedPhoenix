@@ -6,7 +6,15 @@ TagManager:
   tags:
   - FireDoor
   - FireDoorLeft
+  - FireBird
+  - WindBird
+  - WindDoor
   - FireDoorRight
+  - WindDoorRight
+  - WindDoorLeft
+  - Light
+  - Wind
+  - Birds
   layers:
   - Default
   - TransparentFX
@@ -19,9 +27,9 @@ TagManager:
   - Player
   - Enemies
   - FireBird
-  - 
-  - 
-  - 
+  - WindBird
+  - Special Items
+  - "\u5E7D\u7075"
   - 
   - 
   - 

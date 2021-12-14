@@ -7,7 +7,10 @@ public class BirdAnimationController : MonoBehaviour
 
     public static float a;
     public HeroMainMove heroScript;
-   
+    private void OnEnable()
+    {
+        heroScript =GameObject.Find("hero").GetComponent<HeroMainMove>(); 
+    }
     public void ChangeAttack1()
     {
         if (heroScript.isEnterAttack2)

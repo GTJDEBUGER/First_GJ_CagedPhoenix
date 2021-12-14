@@ -63,7 +63,7 @@ public class HeroMainMove : MonoBehaviour
     #endregion
     //开门
     bool isMeetLeft, isMeetRight;
-
+    [SerializeField]float 最大攻击前移动时间;
     public static bool isTouchingFireDoor;
 
 
@@ -98,13 +98,29 @@ public class HeroMainMove : MonoBehaviour
     }
     void Update()
     {
-        DoPhiscalJudgy();
-        DoAnimationChangeAndJugdy();
+        if (!Cage.ChangeMoveState)
+        {
+            DoPhiscalJudgy();
+            DoAnimationChangeAndJugdy();
+        }
+        else
+        {
+            anim.SetFloat("Speed",0);
+            anim.SetFloat("HorizontalSpeed", hero.velocity.y);
+            anim.SetBool("isOnGround",true);
+        }
     }
 
     private void FixedUpdate()
     {
-        DoMoving();
+        if (!Cage.ChangeMoveState)
+        {
+            DoMoving();
+        }
+        else
+        {
+            hero.velocity = new Vector2(0,hero.velocity.y);
+        }
     }
     void DoPhiscalJudgy()//物理输入判断！(update)
     { 
@@ -239,7 +255,13 @@ public class HeroMainMove : MonoBehaviour
             if (isMovingToAttack)//移动到攻击目标攻击
             { 
                     bird.transform.position = Vector2.Lerp(bird.transform.position,birdAttackPostion,20*Time.deltaTime);
+            
                 if (Vector2.Distance(bird.transform.position, birdAttackPostion) < 0.05f)
+                {
+                    attack1 = true;
+                    isMovingToAttack = false;
+                }   
+                if (attackBeginTime + 最大攻击前移动时间 < Time.time)
                 {
                     attack1 = true;
                     isMovingToAttack = false;

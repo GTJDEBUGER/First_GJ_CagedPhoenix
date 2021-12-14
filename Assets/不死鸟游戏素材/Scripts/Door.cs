@@ -10,11 +10,11 @@ public class Door : MonoBehaviour
     private void Awake()
     {
         anim = GetComponent<Animator>();
+        Invoke("StopWait", 1f);
     }
+    
     private void Update()
     {
-        //Debug.Log("isLookAtFireDoor is "+isTrueDirection);
-        Debug.Log("hitDoor is " + hitDoor);
         isTrueDirection =BirdMove.isLookAtFireDoor;
         if (hitDoor && isTrueDirection)
         {
@@ -28,5 +28,9 @@ public class Door : MonoBehaviour
     public void OpenedDoor()
     {
         anim.SetBool("OpenedDoor",true);
+    }
+    void StopWait()
+    {
+        hitDoor = false;
     }
 }

@@ -12,7 +12,7 @@ public class DoorSons : MonoBehaviour
     }
     private void Update()
     {
-        this.transform.parent.GetComponent<Door>().hitDoor = hitDoor;
+
         if (hitDoor)
         {
             Invoke("StopWait", 0.5f);
@@ -25,19 +25,18 @@ public class DoorSons : MonoBehaviour
         hitDoor = false;
         StopAllCoroutines();
     }
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.collider.IsTouchingLayers(FireBirds))
-        { 
-            hitDoor = true;
-        }
-    }
-    private void OnCollisionStay2D(Collision2D collision)
-    {
-        if (collision.collider.IsTouchingLayers(FireBirds))
+        if (collision.CompareTag("FireBird")&&this.transform.CompareTag("FireDoorRight")||this.transform.CompareTag("FireDoorLeft"))
         {
+            this.transform.parent.GetComponent<Door>().hitDoor = hitDoor;
+            hitDoor = true;
+        }
+        if (collision.CompareTag("Wind") && this.transform.CompareTag("WindDoorRight") || this.transform.CompareTag("WindDoorLeft"))
+        {
+            Debug.Log(collision);
+            this.transform.parent.GetComponent<Door>().hitDoor = hitDoor;
             hitDoor = true;
         }
     }
-
 }

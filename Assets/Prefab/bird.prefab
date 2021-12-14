@@ -208,6 +208,8 @@ MonoBehaviour:
   distance: 0.76
   time: 5
   hero: {fileID: 0}
+  Wind: {fileID: 0}
+  speed: 0
 --- !u!114 &7162323020197578526
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -234,7 +236,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 1.4746675, y: -0.12502223}
+  m_Offset: {x: 0.95235705, y: -0.12502223}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -245,7 +247,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.8614168, y: 1.7759715}
+  m_Size: {x: 1.9060378, y: 1.7759715}
   m_EdgeRadius: 0
 --- !u!50 &861872524
 Rigidbody2D:
