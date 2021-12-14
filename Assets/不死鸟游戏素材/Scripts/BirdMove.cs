@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 
 public class BirdMove : MonoBehaviour
 {
@@ -18,6 +19,7 @@ public class BirdMove : MonoBehaviour
     [SerializeReference] GameObject hero;
     HeroMainMove heroScripts;
     public static bool isLookAtFireDoor;
+    [SerializeField]GameObject cinemation;
 
     [Header("ÒÆ¶¯ËÙ¶È")]
     [SerializeField] float moveSpeed;
@@ -29,6 +31,7 @@ public class BirdMove : MonoBehaviour
     [SerializeField] float speed;
     private void OnEnable()
     {
+        cinemation.GetComponent<CinemachineVirtualCamera>().Follow=this.transform;
         bird = this.gameObject;
         hero = GameObject.Find("hero");
         heroScripts = hero.GetComponent<HeroMainMove>();
@@ -44,7 +47,7 @@ public class BirdMove : MonoBehaviour
     {
         if (!Cage.ChangeMoveState)
         {
-
+            cinemation.SetActive(false);
             this.GetComponent<CircleCollider2D>().enabled = false;
             AnimationChange();
             AttackDirection();
@@ -53,15 +56,17 @@ public class BirdMove : MonoBehaviour
         }
         else
         {
-
+            cinemation.SetActive(true);
             this.GetComponent<CircleCollider2D>().enabled = true;
             BirdAWSDMove();
         }
     }
     private void FixedUpdate()
     {
-        if(Cage.ChangeMoveState)
+        if (Cage.ChangeMoveState)
             PhisicalMove();
+        else
+            bird.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
     }
     public static void ChangeLayerToBirds()
     {
